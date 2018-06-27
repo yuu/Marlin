@@ -6927,6 +6927,7 @@ static bool pin_is_protected(const int8_t pin) {
  *
  *  P<pin>  Pin number (LED if omitted)
  *  S<byte> Pin status from 0 - 255
+ *  D<int> duration from 0 - 255
  */
 inline void gcode_M42() {
   if (!parser.seenval('S')) return;
@@ -6935,9 +6936,14 @@ inline void gcode_M42() {
   const int pin_number = parser.intval('P', LED_PIN);
   if (pin_number < 0) return;
 
+  const int duration = parser.intval('D', 0);
+
   pinMode(pin_number, OUTPUT);
   digitalWrite(pin_number, pin_status);
   analogWrite(pin_number, pin_status);
+
+  SERIAL_ECHOPAIR("duration: ", duration);
+  SERIAL_EOL();
 
   #if FAN_COUNT > 0
     switch (pin_number) {

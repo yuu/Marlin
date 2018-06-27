@@ -6927,7 +6927,7 @@ static bool pin_is_protected(const int8_t pin) {
  *
  *  P<pin>  Pin number (LED if omitted)
  *  S<byte> Pin status from 0 - 255
- *  D<int> duration from 0 - 255
+ *  D<int> duration(msec) from 0 - 255
  */
 inline void gcode_M42() {
   if (!parser.seenval('S')) return;

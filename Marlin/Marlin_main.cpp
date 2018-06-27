@@ -6945,6 +6945,8 @@ inline void gcode_M42() {
   SERIAL_ECHOPAIR("duration: ", duration);
   SERIAL_EOL();
 
+  delay(duration);
+
   #if FAN_COUNT > 0
     switch (pin_number) {
       #if HAS_FAN0
@@ -6958,6 +6960,9 @@ inline void gcode_M42() {
       #endif
     }
   #endif
+
+  digitalWrite(pin_number, LOW);
+  analogWrite(pin_number, LOW);
 }
 
 #if ENABLED(PINS_DEBUGGING)

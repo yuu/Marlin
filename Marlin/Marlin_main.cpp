@@ -6935,12 +6935,6 @@ inline void gcode_M42() {
   const int pin_number = parser.intval('P', LED_PIN);
   if (pin_number < 0) return;
 
-  if (pin_is_protected(pin_number)) {
-    SERIAL_ERROR_START();
-    SERIAL_ERRORLNPGM(MSG_ERR_PROTECTED_PIN);
-    return;
-  }
-
   pinMode(pin_number, OUTPUT);
   digitalWrite(pin_number, pin_status);
   analogWrite(pin_number, pin_status);

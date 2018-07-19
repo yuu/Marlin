@@ -6942,9 +6942,8 @@ inline void gcode_M42() {
   digitalWrite(pin_number, pin_status);
   analogWrite(pin_number, pin_status);
 
-  SERIAL_ECHOPAIR("duration: ", duration);
+  SERIAL_ECHOPAIR("echo:delay start: ", duration);
   SERIAL_EOL();
-
   delay(duration);
 
   #if FAN_COUNT > 0

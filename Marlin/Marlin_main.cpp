@@ -6936,7 +6936,9 @@ inline void gcode_M42() {
   const int pin_number = parser.intval('P', LED_PIN);
   if (pin_number < 0) return;
 
-  const int duration = parser.intval('D', 0);
+  uint32_t duration = 0;
+  if (parser.seenval('D'))
+    duration = parser.value_ulong();
 
   pinMode(pin_number, OUTPUT);
   digitalWrite(pin_number, pin_status);
